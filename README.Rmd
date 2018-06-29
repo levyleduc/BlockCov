@@ -23,9 +23,9 @@ $\boldsymbol{\Sigma}$ such that the number $q$ of its rows and columns is much l
 The goal of the package is to propose a new estimator of $\boldsymbol{\Sigma}$ and of the square root of its inverse, in the particular case 
 where $\boldsymbol{\Sigma}$ is assumed to have a block structure without limiting ourselves to diagonal blocks.
 More precisely, in this paper, we shall assume that
-\begin{equation}\label{eq:Sigma}
+$$
 \boldsymbol{\Sigma}=\boldsymbol{Z}\boldsymbol{Z}'+\boldsymbol{D},
-\end{equation}
+$$
 where $\boldsymbol{Z}$ is a $q \times k$ sparse matrix with $k\ll q$, $\boldsymbol{Z}'$ denotes the transpose of the matrix $\boldsymbol{Z}$ and $\boldsymbol{D}$
 is a diagonal matrix such that the diagonal terms of $\boldsymbol{\Sigma}$ are equal to one.
 
