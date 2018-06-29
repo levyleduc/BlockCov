@@ -75,8 +75,7 @@ It is displayed in Figure and is obtained by using:
 
 ![](README_files/figure-markdown_strict/fig1-1.png)
 
-The Frobenius norm
-$\\|\\boldsymbol{\\Sigma}-\\widehat{\\boldsymbol{\\Sigma}}\\|$ is equal
+The Frobenius norm $\\|\\boldsymbol{\\Sigma}-\\widehat{\\boldsymbol{\\Sigma}}\\|$ is equal
 to 5.5.
 
 For comparison purpose, the sample correlation matrix is displayed in
