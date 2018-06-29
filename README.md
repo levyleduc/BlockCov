@@ -2,9 +2,9 @@ Introduction
 ============
 
 This package implements the algorithm proposed by Perrot-Dockès and Lévy-Leduc in \[1\]. For further details we refer the reader to this paper. We shall consider the following framework. Let **E**<sub>1</sub>, **E**<sub>2</sub>, ⋯, **E**<sub>*n*</sub>, *n* zero-mean i.i.d. *q*-dimensional random vectors having a covariance matrix **Σ** such that the number *q* of its rows and columns is much larger than *n*. The goal of the package is to propose a new estimator of **Σ** and of the square root of its inverse, in the particular case where **Σ** is assumed to have a block structure without limiting ourselves to diagonal blocks. More precisely, in this paper, we shall assume that
-\begin{equation}\label{eq:Sigma}
+$$
 \boldsymbol{\Sigma}=\boldsymbol{Z}\boldsymbol{Z}'+\boldsymbol{D},
-\end{equation}
+$$
 where **Z** is a *q* × *k* sparse matrix with *k* ≪ *q*, **Z**′ denotes the transpose of the matrix **Z** and **D** is a diagonal matrix such that the diagonal terms of **Σ** are equal to one.
 
 Our approach consists in providing a low rank matrix approximation of the **ZZ**′ part of **Σ** and then in using a ℓ<sub>1</sub> regularization in order to obtain a sparse estimator of **Σ**. More precisely, since **Σ** is a correlation matrix, it is a symmetric matrix with ones on its diagonal, thus all the information is contained in its upper triangular part without its diagonal. If we know **P** the (*q* − 1)×(*q* − 1) symmetric matrix, which has for upper triangular part the upper triangular part of **Σ** without its diagonal, we know **Σ**. The matrix **P** has the advantage to have a low rank. In the following, we propose to first estimate the block matrix **P**.
