@@ -20,7 +20,7 @@ the transpose of the matrix **Z** and **D** is a diagonal matrix such
 that the diagonal terms of **Σ** are equal to one.
 
 Our approach consists in providing a low rank matrix approximation of
-the **Z****Z**′ part of **Σ** and then in using a ℓ<sub>1</sub>
+the **ZZ**′ part of **Σ** and then in using a ℓ<sub>1</sub>
 regularization in order to obtain a sparse estimator of **Σ**. More
 precisely, since **Σ** is a correlation matrix, it is a symmetric matrix
 with ones on its diagonal, thus all the information is contained in its
