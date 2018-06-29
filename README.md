@@ -7,7 +7,7 @@ This package implements the algorithm proposed by Perrot-Dockès and Lévy-Leduc
 \end{equation}
 where **Z** is a *q* × *k* sparse matrix with *k* ≪ *q*, **Z**′ denotes the transpose of the matrix **Z** and **D** is a diagonal matrix such that the diagonal terms of **Σ** are equal to one.
 
-Our approach consists in providing a low rank matrix approximation of the **Z****Z**′ part of **Σ** and then in using a ℓ<sub>1</sub> regularization in order to obtain a sparse estimator of **Σ**. More precisely, since **Σ** is a correlation matrix, it is a symmetric matrix with ones on its diagonal, thus all the information is contained in its upper triangular part without its diagonal. If we know **P** the (*q* − 1)×(*q* − 1) symmetric matrix, which has for upper triangular part the upper triangular part of **Σ** without its diagonal, we know **Σ**. The matrix **P** has the advantage to have a low rank. In the following, we propose to first estimate the block matrix **P**.
+Our approach consists in providing a low rank matrix approximation of the **ZZ**′ part of **Σ** and then in using a ℓ<sub>1</sub> regularization in order to obtain a sparse estimator of **Σ**. More precisely, since **Σ** is a correlation matrix, it is a symmetric matrix with ones on its diagonal, thus all the information is contained in its upper triangular part without its diagonal. If we know **P** the (*q* − 1)×(*q* − 1) symmetric matrix, which has for upper triangular part the upper triangular part of **Σ** without its diagonal, we know **Σ**. The matrix **P** has the advantage to have a low rank. In the following, we propose to first estimate the block matrix **P**.
 
 We shall moreover propose a methodology to estimate **Σ** in the case where the block structure is latent that is when the columns and rows of **Σ** have to be permuted according to an unknown permutation in order to make the block structure appear. In this case, a hierarchical clustering step has to be applied beforehand.
 
@@ -21,7 +21,7 @@ q <- 100
 Sigma <- Simu_Sigma(q = q, diag = FALSE, equal = TRUE)
 ```
 
-The matrix **Σ** is displayed in Figure .
+The matrix **Σ** is displayed hereafter.
 
 ![](README_files/figure-markdown_github/fig0-1.png)
 
@@ -43,7 +43,7 @@ nb_nn0 <- sum(Sigma[upper.tri(Sigma, diag = FALSE)] != 0)
 res_known <-  Sigma_estimation(E, k = k, nb_nn0 = nb_nn0)
 ```
 
-Our estimator $\\widehat{\\boldsymbol{\\Sigma}}$ of **Σ** is given by . It is displayed in Figure and is obtained by using:
+Our estimator $\\widehat{\\boldsymbol{\\Sigma}}$ of **Σ** is given by . It is displayed in the following figure and is obtained by using:
 
 ``` r
 Matrix::image(res_known$Sigma_est)
@@ -53,7 +53,7 @@ Matrix::image(res_known$Sigma_est)
 
 The Frobenius norm $\\|\\boldsymbol{\\Sigma}-\\widehat{\\boldsymbol{\\Sigma}}\\|$ is equal to 5.5.
 
-For comparison purpose, the sample correlation matrix is displayed in Figure .
+For comparison purpose, the sample correlation matrix is displayed hereafter
 
 ``` r
 Matrix::image(Matrix::Matrix(cor(E)))
@@ -69,7 +69,7 @@ In practice, the number of non null values and the rank of of **P** are unknown.
 res <- Sigma_estimation(E, kmax = 90, prop.max = 0.6, step = 100)
 ```
 
-The rank is by default chosen between 1 and min(*q* − 1, 100), this value can be changed using the argument , which is here equal to 90. The number of non null values is chosen between *q* and 70% of the number of entries in the upper triangular part of **Σ**, namely *q*(*q* − 1)/2. The step between two consecutive values of this sequence can be changed using the argument $\\verb|step|$ and the proportion 70% can be changed using the $\\verb|prop.max|$ argument. This sequence can also be given using the argument. Here, this sequence is between *q* and 60% of the number of entries in the upper triangular part of **Σ** with a step of 100. The corresponding estimator of **Σ** is displayed in Figure .
+The rank is by default chosen between 1 and min(*q* − 1, 100), this value can be changed using the argument , which is here equal to 90. The number of non null values is chosen between *q* and 70% of the number of entries in the upper triangular part of **Σ**, namely *q*(*q* − 1)/2. The step between two consecutive values of this sequence can be changed using the argument $\\verb|step|$ and the proportion 70% can be changed using the $\\verb|prop.max|$ argument. This sequence can also be given using the argument. Here, this sequence is between *q* and 60% of the number of entries in the upper triangular part of **Σ** with a step of 100. The corresponding estimator of **Σ** is displayed in the following figure .
 
 ``` r
 Matrix::image(res$Sigma_est)
@@ -81,7 +81,7 @@ We can see from this figure that the estimation of **Σ** does not seem to be al
 
 The estimated rank and the estimated number of non null values can be obtained by and , respectively. They are here equal to 5 and 1300, respectively. Note that the true values of these parameters are 5 and 1270.
 
-An estimator of **Σ**<sup>−1/2</sup> is obtained thanks to . It can be used to remove the dependence that may exist between the columns of **E**. To achieve this goal $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}\\boldsymbol{\\Sigma}\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$, which is displayed in Figure , should be close to the identity matrix:
+An estimator of **Σ**<sup>−1/2</sup> is obtained thanks to . It can be used to remove the dependence that may exist between the columns of **E**. To achieve this goal $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}\\boldsymbol{\\Sigma}\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$, which is displayed in the following figure , should be close to the identity matrix:
 
 ``` r
 Matrix::image(res$S_inv_12 %*% Sigma %*% res$S_inv_12)
@@ -101,7 +101,7 @@ samp <- sample(1:q, q, replace = FALSE)
 Sigma_samp <- Sigma[samp, samp]
 ```
 
-The corresponding matrix is displayed in Figure .
+The corresponding matrix is displayed hereafter.
 
 ``` r
 Matrix::image(Sigma_samp)
@@ -116,7 +116,7 @@ E <- matrix(rnorm(n * q), ncol = q) %*% chol(as.matrix(Sigma_samp))
 res_samp <- Sigma_estimation(E, prop.max = 0.6, step = 100, reorder = TRUE)
 ```
 
-The estimated matrix is displayed in Figure .
+The estimated matrix is displayed hereafter.
 
 ``` r
 Matrix::image(res_samp$Sigma_est)
@@ -124,7 +124,7 @@ Matrix::image(res_samp$Sigma_est)
 
 ![](README_files/figure-markdown_github/fig5-1.png)
 
-The permutation to make the block structure appear is available from . The corresponding estimated correlation matrix in which the columns have been permuted in order to make the block structure appear is obtained using the following lines and is displayed in Figure :
+The permutation to make the block structure appear is available from . The corresponding estimated correlation matrix in which the columns have been permuted in order to make the block structure appear is obtained using the following lines and is displayed in the following figure:
 
 ``` r
 ord <- res_samp$order
@@ -133,7 +133,7 @@ Matrix::image(res_samp$Sigma_est[ord, ord])
 
 ![](README_files/figure-markdown_github/fig6-1.png)
 
-This matrix has to be compared with the following one displayed in Figure :
+This matrix has to be compared with the following one displayed in the following figure:
 
 ``` r
 Matrix::image(Sigma_samp[ord, ord])
@@ -143,7 +143,7 @@ Matrix::image(Sigma_samp[ord, ord])
 
 Once again, our strategy does not seem to be altered by the permutation of the columns of the original matrix **Σ**. The Frobenius norm of the error is equal to 6.9.
 
-In this situation $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$ is still available. The matrix $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}\\boldsymbol{\\Sigma}\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$, which is displayed in Figure , should be close to the identity matrix:
+In this situation $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$ is still available. The matrix $\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}\\boldsymbol{\\Sigma}\\widehat{\\boldsymbol{\\Sigma}}^{-1/2}$, which is displayed in the following figure, should be close to the identity matrix:
 
 ``` r
 Matrix::image(res_samp$S_inv_12 %*% Sigma_samp %*%res_samp$S_inv_12)
